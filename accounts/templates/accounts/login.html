@@ -1,23 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<div>
-    <h2>Login</h2>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <button type="submit" class="btn btn-success">Login</button>
-    </form>
-    <p><a href="{% url 'register' %}">Don't have an account? Register here.</a></p>
-    <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+<div class="login-container">
+    <div class="login-card card shadow">
+        <div class="card-body">
+            <h2 class="login-title card-title text-center mb-4">Welcome to Bank!</h2>
+            {% if messages %}
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <p><a href="{% url 'register' %}" class="register-reset-link">Don't have an account? Register here.</a></p>
+                <p><a href="{% url 'password_reset' %}" class="register-reset-link">Forgot Password?</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
