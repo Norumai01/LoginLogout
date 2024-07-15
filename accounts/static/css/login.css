@@ -11,7 +11,7 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
 }
 
 .login-card {
@@ -30,4 +30,19 @@ body {
 
 .register-reset-link:hover {
     color: #116936; /* A slightly darker green for hover state */
+}
+
+#register-change p{
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.form-control {
+    background-color: #d8ffe0;
+    padding-left: 2.4rem;
+}
+
+.bi {
+    font-size: 1.4rem;
+    color: #0c8d42;
 }
