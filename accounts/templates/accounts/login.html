@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link href="{% static 'css/login.css' %}" rel="stylesheet">
+<link href="{% static 'css/login_register.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -10,31 +10,33 @@
     <div class="login-card card shadow">
         <div class="card-body">
             <h2 class="login-title card-title text-center mb-3">Welcome to Bank!</h2>
+            
             {% if messages %}
                 <div class="alert alert-danger">
                     <ul class="mb-0">
                         {% for message in messages %}
-                            {{ message }}
+                            <li>{{ message }}</li>
                         {% endfor %}
                     </ul>
                 </div>
             {% endif %}
+            
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3 position-relative">
-                    <!-- <label for="username" class="form-label">Username:</label> -->
                     <i class="bi bi-person position-absolute top-50 start-0 translate-middle-y ms-2"></i> 
                     <input type="text" class="form-control form-control-lg" placeholder="Username" id="username" name="username">
                 </div>
                 <div class="mb-3 position-relative">
-                    <!-- <label for="password" class="form-label">Password:</label> -->
                     <i class="bi bi-key position-absolute top-50 start-0 translate-middle-y ms-2"></i>
                     <input type="password" class="form-control form-control-lg" placeholder="Password" id="password" name="password">
                 </div>
+                
                 <div class="d-grid">
                     <button type="submit" class="btn btn-success btn-lg">Login</button>
                 </div>
             </form>
+            
             <div class="text-center mt-3" id="register-change">
                 <p><a href="{% url 'register' %}" class="register-reset-link">Don't have an account? Register here.</a></p>
                 <p><a href="{% url 'password_reset' %}" class="register-reset-link">Forgot Password?</a></p>

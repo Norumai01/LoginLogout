@@ -5,10 +5,10 @@ from django.core.exceptions import ValidationError
 from django.forms.forms import Form  
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(label="Username")
-    email = forms.EmailField(label="Email Address", required=True)
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput)
+    username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Username'}))
+    email = forms.EmailField(label="Email Address", required=True, widget=forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Email'}))
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Password'}))
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = User

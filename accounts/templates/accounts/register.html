@@ -1,12 +1,57 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/login_register.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<div>
-    <h2>Register</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ register_form.as_p }}
-        <button type="submit" class="btn btn-success">Register</button>
-    </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<div class="login-container">
+    <div class="login-card card shadow">
+        <div class="card-body">
+            <h2 class="login-title card-title text-center mb-3">Register</h2>
+            
+            <form method="post">
+                {% csrf_token %}
+
+                {% if register_form.errors %}
+                <div class="alert alert-danger">
+                    {% for field in register_form %}
+                        <ul class ="mb-0">    
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-person position-absolute top-50 start-0 translate-middle-y ms-2"></i>
+                    {{ register_form.username }}    
+                </div>
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-envelope position-absolute top-50 start-0 translate-middle-y ms-2"></i>
+                    {{ register_form.email }}      
+                </div>
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-key position-absolute top-50 start-0 translate-middle-y ms-2"></i>
+                    {{ register_form.password1 }}     
+                </div>
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-key position-absolute top-50 start-0 translate-middle-y ms-2"></i>
+                    {{ register_form.password2 }}      
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">Register</button>
+                </div>    
+            </form>
+
+            <div class="mt-3 text-center" id="register-change">
+                <p><a href="{% url 'login' %}" class="register-reset-link">Already have an account? Login here.</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
